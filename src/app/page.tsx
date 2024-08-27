@@ -1,7 +1,10 @@
+import AppLogo from "@/components/AppLogo/AppLogo";
 import CheckList from "@/components/CheckList/CheckList";
 import FiveStars from "@/components/FiveStars/FiveStars";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper/MaxWidthWrapper";
-import UserImage from "@/components/UserImage/UserImage";
+import Phone from "@/components/Phone/Phone";
+import PhoneWithArrows from "@/components/PhoneWithArrows/PhoneWithArrows";
+import UserImageGroup from "@/components/UsersImage/UserImageGroup";
 
 export default function Home() {
     return (
@@ -9,13 +12,9 @@ export default function Home() {
             <section>
                 <MaxWidthWrapper className="pb-24 pt-10 sm:pb-32 lg:grid lg:grid-cols-3 lg:gap-x-0  lg:pt-24 lg:pb-52 xl:gap-x-8 xl:pt-32">
                     <div className="col-span-2 px-6 lg:px-0 lg:pt-4">
-                        <div className="relative mx-auto text-center lg:text-left flex flex-col items-center lg:items:start">
+                        <div className="relative mx-auto text-center lg:text-left flex flex-col items-center lg:items-start mb-5">
                             <div className="absolute w-28 left-0 -top-20 hidden lg:block">
-                                <img
-                                    src="/snake-1.png"
-                                    className="w-full"
-                                    alt="app logo"
-                                />
+                                <AppLogo />
                             </div>
                             <h1 className="relative w-fit tracking-tighter text-balance mt-16 font-bold !leading-tight text-gray-900 text-5xl md:text-6xl lg:text-7xl">
                                 Your Image on a{" "}
@@ -32,17 +31,14 @@ export default function Home() {
                                 phone case X allows you to protect your
                                 memories, not just your phone case.
                             </p>
-                            <CheckList />
-                            <div className="mt-12 flex flex-col bsm:flex-row items-center sm:items-start gap-5">
-                                <div className="flex -space-x-4">
-                                    <UserImage src="/users/user-1.png" />
-                                    <UserImage src="/users/user-2.png" />
-                                    <UserImage src="/users/user-3.png" />
-                                    <UserImage src="/users/user-4.jpg" />
-                                    <UserImage src="/users/user-5.jpg" />
-                                </div>
 
-                                <div className="flex flex-col justify-between items-center sm:items-start">
+                            <CheckList />
+                            <div
+                                className="mt-12 flex flex-col sm:flex-row 
+                                items-center sm:items-start gap-5"
+                            >
+                                <UserImageGroup />
+                                <div className="flex flex-col justify-between items-center  sm:items-start">
                                     <FiveStars />
                                     <p>
                                         <span className="font-semibold">
@@ -53,6 +49,9 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="col-span-full lg:col-span-1 w-full flex justify-center px-8 sm:px-16 md:px-0 mt:32 lg:mx-0 lg:mt-20 h-fit">
+                        <PhoneWithArrows />
                     </div>
                 </MaxWidthWrapper>
             </section>
