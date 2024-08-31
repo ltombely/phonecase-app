@@ -173,7 +173,7 @@ export default function Home() {
             </div>
           </div>
 
-          <ul className="mx-auto mt-12 max-w-prose sm:text-lg space-y-2 w-fit mb-8">
+          <ul className="mx-auto mt-12 max-w-prose sm:text-lg space-y-2 w-fit pb-8">
             <li className="w-fit">
               <Check className="size-5 text-green-600 inline mr-1.5" />
               High-quality silicon material

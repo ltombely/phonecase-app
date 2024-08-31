@@ -8,6 +8,7 @@ describe("NavbarNavigationElements component", () => {
         const signInComponent = screen.getByText(/Sign Up/i);
 
         expect(signInComponent).toBeInTheDocument();
+
     });
 
 });

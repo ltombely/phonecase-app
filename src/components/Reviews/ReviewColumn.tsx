@@ -25,7 +25,7 @@ export default function ReviewColumn({
     if (!columnRef.current) return;
 
     const resizeObserver = new window.ResizeObserver(() => {
-      setColumnHeight(columnRef.current!.offsetHeight ?? 0);
+      setColumnHeight(columnRef.current?.offsetHeight ?? 0);
     });
 
     resizeObserver.observe(columnRef.current);
