@@ -23,7 +23,7 @@ export default function Review({ imgSrc, className, ...props }: ReviewProps) {
       style={{ animationDelay }}
       {...props}
     >
-      <Phone imgSrc={imgSrc} />
+      <Phone imgSrc={imgSrc} className="scale-[0.7]" />
     </div>
   );
 }
