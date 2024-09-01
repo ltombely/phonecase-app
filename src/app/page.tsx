@@ -1,13 +1,13 @@
-import AppLogo from "@/components/AppLogo/AppLogo";
-import CheckList from "@/components/CheckList/CheckList";
-import CreateCaseButton from "@/components/CreateCaseButton/CreateCaseButton";
-import FiveStars from "@/components/FiveStars/FiveStars";
-import { Icons } from "@/components/Icons/Icons";
-import MaxWidthWrapper from "@/components/MaxWidthWrapper/MaxWidthWrapper";
-import Phone from "@/components/Phone/Phone";
-import PhoneWithArrows from "@/components/PhoneWithArrows/PhoneWithArrows";
+import AppLogo from "@/components/AppLogo";
+import CheckList from "@/components/CheckList";
+import CreateCaseButton from "@/components/CreateCaseButton";
+import FiveStars from "@/components/FiveStars";
+import { Icons } from "@/components/Icons";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import Phone from "@/components/Phone";
+import PhoneWithArrows from "@/components/PhoneWithArrows";
 import Reviews from "@/components/Reviews/Reviews";
-import UserImageGroup from "@/components/UsersImage/UserImageGroup";
+import UserImageGroup from "@/components/UserImageGroup";
 import { Check } from "lucide-react";
 
 export default function Home() {
@@ -28,7 +28,7 @@ export default function Home() {
               <p className="mt-8 text-lg lg:pr-10 max-w-prose text-center  lg:text-left text-balance md:text-wrap">
                 Capture your favorite memories with your own,{" "}
                 <span className="font-semibold">one-of-one</span> phone case X
-                allows you to protect your memories, bnot just your phone case.
+                allows you to protect your memories, not just your phone case.
               </p>
 
               <CheckList />

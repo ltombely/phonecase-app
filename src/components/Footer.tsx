@@ -1,5 +1,5 @@
 import Link from "next/link";
-import MaxWidthWrapper from "../MaxWidthWrapper/MaxWidthWrapper";
+import MaxWidthWrapper from "./MaxWidthWrapper";
 
 export default function Footer() {
   return (
@@ -14,9 +14,24 @@ export default function Footer() {
           </div>
           <div className="flex justify-center">
             <div className="flex space-x-8">
-              <Link href="#" className="text-sm text-muted-foreground hover:text-gray-600">Terms of service</Link>
-              <Link href="#" className="text-sm text-muted-foreground hover:text-gray-600">Privacy Policy</Link>
-              <Link href="#" className="text-sm text-muted-foreground hover:text-gray-600">Cookie Policy</Link>
+              <Link
+                href="#"
+                className="text-sm text-muted-foreground hover:text-gray-600"
+              >
+                Terms of service
+              </Link>
+              <Link
+                href="#"
+                className="text-sm text-muted-foreground hover:text-gray-600"
+              >
+                Privacy Policy
+              </Link>
+              <Link
+                href="#"
+                className="text-sm text-muted-foreground hover:text-gray-600"
+              >
+                Cookie Policy
+              </Link>
             </div>
           </div>
         </div>

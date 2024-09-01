@@ -1,5 +1,5 @@
 import Link from "next/link";
-import MaxWidthWrapper from "../MaxWidthWrapper/MaxWidthWrapper";
+import MaxWidthWrapper from "../MaxWidthWrapper";
 
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import NavbarNavigationElements from "./NavbarNavigationElements";

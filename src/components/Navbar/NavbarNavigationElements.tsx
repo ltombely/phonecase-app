@@ -1,5 +1,5 @@
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
-import CreateCaseButton from "../CreateCaseButton/CreateCaseButton";
+import CreateCaseButton from "../CreateCaseButton";
 import DashboardLink from "../Links/DashboardLink";
 import LoginLink from "../Links/LoginLink";
 import SignOutLink from "../Links/SignOutLink";

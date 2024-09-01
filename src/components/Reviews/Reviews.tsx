@@ -1,4 +1,4 @@
-import MaxWidthWrapper from "../MaxWidthWrapper/MaxWidthWrapper";
+import MaxWidthWrapper from "../MaxWidthWrapper";
 import ReviewGrid from "./ReviewGrid";
 
 export default function Reviews() {

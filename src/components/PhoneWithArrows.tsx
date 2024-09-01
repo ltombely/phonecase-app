@@ -1,4 +1,4 @@
-import Phone from "../Phone/Phone";
+import Phone from "./Phone";
 
 export default function PhoneWithArrows(){
   return(

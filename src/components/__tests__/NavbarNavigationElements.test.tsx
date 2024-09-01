@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import NavbarNavigationElements from "../NavbarNavigationElements";
+import NavbarNavigationElements from "../Navbar/NavbarNavigationElements";
 
 describe("NavbarNavigationElements component", () => {
     it("should render correctly", () => {

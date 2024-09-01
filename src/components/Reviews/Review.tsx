@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { HTMLAttributes } from "react";
-import Phone from "../Phone/Phone";
+import Phone from "../Phone";
 
 interface ReviewProps extends HTMLAttributes<HTMLDivElement> {
   imgSrc: string;
@@ -23,7 +23,7 @@ export default function Review({ imgSrc, className, ...props }: ReviewProps) {
       style={{ animationDelay }}
       {...props}
     >
-      <Phone imgSrc={imgSrc} className="scale-[0.7]" />
+      <Phone imgSrc={imgSrc} />
     </div>
   );
 }

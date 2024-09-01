@@ -1,5 +1,5 @@
-import MaxWidthWrapper from "@/components/MaxWidthWrapper/MaxWidthWrapper";
-import Steps from "@/components/Steps/Steps";
+import MaxWidthWrapper from "@/components/MaxWidthWrapper";
+import Steps from "@/components/Steps";
 
 import { ReactNode } from "react";
 

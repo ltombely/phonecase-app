@@ -1,4 +1,4 @@
-import UserImage from "../UserImage/UserImage";
+import UserImage from "./UserImage";
 
 export default function UserImageGroup() {
 
