@@ -1,0 +1,16 @@
+datasource db {
+  url      = env("DATABASE_URL")
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Configuration {
+  id              String  @id @default(cuid())
+  width           Int
+  height          Int
+  imageUrl        String
+  croppedImageUrl String?
+}

@@ -9,14 +9,16 @@ import { useState, useTransition } from "react";
 import Dropzone, { FileRejection } from "react-dropzone";
 
 export default function Page() {
-  const { toast } = useToast();
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
-  const [uploadProgress, setUploadProgress] = useState<number>(80);
+  const [uploadProgress, setUploadProgress] = useState<number>(0);
+  const [isPending, startTransition] = useTransition();
   const router = useRouter();
+  const { toast } = useToast();
 
-  const { startUpload } = useUploadThing("imageUploader", {
+  const { startUpload, isUploading } = useUploadThing("imageUploader", {
     onClientUploadComplete: ([data]) => {
       const configId = data.serverData.configId;
+
       startTransition(() => {
         router.push(`/configure/design?id=${configId}`);
       });
@@ -43,13 +45,10 @@ export default function Page() {
     });
   };
 
-  const isUploading = false;
-  const [isPending, startTransition] = useTransition();
-
   return (
     <div
       className={cn(
-        "relative h-full flex-1 my-16 w-full rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset  ring-gray-900/10 lg:rounded-2xl flex justify-center flex-col items-center",
+        "relative h-full flex-1 my-16 w-full rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset  ring-gray-900/10 lg:rounded-2xl flex justify-center flex-col items-center hover:cursor-pointer",
         {
           "ring-blue-900/25 bg-blue-900/10": isDragOver,
         }
@@ -85,7 +84,7 @@ export default function Page() {
                   <div className="flex flex-col items-center">
                     <p>Uploading... </p>
                     <Progress
-                      className="mt-2 w-40 h-2 bg-gray-300"
+                      className="mt-2 w-40 h-2 bg-gray-300 text-primary"
                       value={uploadProgress}
                     />
                   </div>

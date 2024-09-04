@@ -8,7 +8,6 @@
 
 # testing
 /coverage
-/tailwind.md
 
 # next.js
 /.next/
@@ -36,3 +35,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+#Personal notes
+/tailwind.md
+/uploadthing.md
+/next.md
