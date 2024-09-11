@@ -1,8 +1,27 @@
-export default function Tests() {
-  return (
-    <div className="w-screen h-screen bg-black flex justify-center items-center">
-      <div className="bg-fuchsia-900 size-40 flex justify-center items-center font-bold text-white rounded-full text-3xl border-4 border-transparent border-hidden ring-4">Hi</div>
+"use client";
 
+import { cn } from "@/lib/utils";
+import { useEffect, useMemo, useRef, useState } from "react";
+
+export default function Tests() {
+  const [count, setCount] = useState(0);
+  const [text, setText] = useState("");
+
+  const expensiveCalculation = useMemo(() => {
+    console.log("Calculando valor caro...");
+    return count * 2;
+  }, [count]);
+  return (
+    <div className="w-screen h-screen justify-center items-center text-white text-balance bg-zinc-400">
+      <h1>Contador: {count}</h1>
+      <button onClick={() => setCount(count + 1)}>Incrementar Contador</button>
+      <h2>Resultado da calculadora cara: {expensiveCalculation}</h2>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Digite algo"
+      />
     </div>
   );
 }

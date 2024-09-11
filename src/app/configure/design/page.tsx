@@ -1,4 +1,4 @@
-import DesignConfigurator from "@/components/DesignConfigurator";
+import DesignConfigurator from "@/app/configure/design/DesignConfigurator";
 import { db } from "@/db";
 import { notFound } from "next/navigation";
 

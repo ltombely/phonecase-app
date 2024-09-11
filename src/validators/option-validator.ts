@@ -33,7 +33,7 @@ export const MATERIALS = {
     },
     {
       label: "Soft Polycarbonate",
-      value: "polycarbonte",
+      value: "polycarbonate",
       description: "Scratch-resistant coating",
       price: PRODUCT_PRICES.material.polycarbonate,
     },
