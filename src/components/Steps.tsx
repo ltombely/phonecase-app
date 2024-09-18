@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 const STEPS = [
   {
@@ -23,6 +24,7 @@ const STEPS = [
 
 export default function Steps() {
   const pathName = usePathname();
+  const t = useTranslations();
 
   return (
     <ol className="rounded-md bg-white lg:flex lg:rounded-none lg:border-1 lg:border-r lg:border-gray-200">
@@ -68,10 +70,10 @@ export default function Steps() {
                       "text-zinc-700": isCurrent,
                     })}
                   >
-                    {step.name}
+                    {t(step.name)}
                   </span>
                   <span className="text-sm text-zinc-500">
-                    {step.description}
+                    {t(step.description)}
                   </span>
                 </span>
               </span>

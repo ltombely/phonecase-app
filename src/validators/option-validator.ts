@@ -44,7 +44,7 @@ export const FINISHES = {
   name: "finish",
   options: [
     {
-      label: "Smoot Finish",
+      label: "Smooth Finish",
       value: "smooth",
       description: undefined,
       price: PRODUCT_PRICES.finish.smooth,
