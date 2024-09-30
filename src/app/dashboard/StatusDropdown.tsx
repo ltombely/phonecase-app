@@ -1,10 +1,10 @@
 'use client'
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/ui/button";
 import {
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { OrderStatus } from "@prisma/client";
 import { DropdownMenuContent } from "@radix-ui/react-dropdown-menu";

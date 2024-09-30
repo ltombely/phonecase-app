@@ -1,13 +1,12 @@
 "use client";
-import { Progress } from "@/components/ui/progress";
+import { Progress } from "@/ui/progress";
 import { useToast } from "@/hooks/use-toast";
 import { useUploadThing } from "@/lib/uploadthing";
 import { cn } from "@/lib/utils";
 import { ImageIcon, Loader2, MousePointerSquareDashedIcon } from "lucide-react";
-import { useRouter } from "@/i18n/routing";
+import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import Dropzone, { FileRejection } from "react-dropzone";
-import { useTranslations } from "next-intl";
 
 export default function Page() {
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
@@ -15,7 +14,6 @@ export default function Page() {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const { toast } = useToast();
-  const t = useTranslations();
 
   const { startUpload, isUploading } = useUploadThing("imageUploader", {
     onClientUploadComplete: ([data]) => {
@@ -41,8 +39,8 @@ export default function Page() {
     setIsDragOver(false);
 
     toast({
-      title: t("{fileType} is not supported", { fileType: file.file.type }),
-      description: t("Please choose a PNG, JPG, or JPEG instead"),
+      title: `Arquivo do tipo ${file.file.type} não é suportado`,
+      description: "Por favor, utilize um arquivo PNG, JPG ou JPEG.",
       variant: "destructive",
     });
   };
@@ -84,7 +82,7 @@ export default function Page() {
               <div className="flex flex-col justify-center mb-2 text-sm text-zinc-700 ">
                 {isUploading ? (
                   <div className="flex flex-col items-center">
-                    <p>{t("Uploading")}</p>
+                    <p>Fazendo upload...</p>
                     <Progress
                       className="mt-2 w-40 h-2 bg-gray-300 text-primary"
                       value={uploadProgress}
@@ -92,23 +90,18 @@ export default function Page() {
                   </div>
                 ) : isPending ? (
                   <div>
-                    <p>{t("Redirecting, please wait")}</p>
+                    <p>Redirecionando, por favor, aguarde...</p>
                   </div>
                 ) : isDragOver ? (
                   <p>
-                    {t.rich("dropToUpload", {
-                      span: (chunks) => (
-                        <span className="font-semibold">{chunks}</span>
-                      ),
-                    })}
+                    <span className="font-semibold">Arraste o arquivo</span>{" "}
+                    para fazer upload
                   </p>
                 ) : (
                   <p>
-                    {t.rich("clickOrDragDrop", {
-                      span: (chunks) => (
-                        <span className="font-semibold">{chunks}</span>
-                      ),
-                    })}
+                    <span className="font-semibold">
+                      Clique ou arraste um arquivo para fazer upload
+                    </span>
                   </p>
                 )}
               </div>

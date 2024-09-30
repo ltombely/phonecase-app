@@ -6,20 +6,14 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import Phone from "@/components/Phone";
 import PhoneWithArrows from "@/components/PhoneWithArrows";
 import Reviews from "@/components/Reviews/Reviews";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/ui/button";
 import UserImageGroup from "@/components/UserImageGroup";
-import { Link } from "@/i18n/routing";
 import { ArrowRight, Check } from "lucide-react";
-import { useTranslations } from "next-intl";
-
-// TODO: O que falta:
-// consertar o funcionamento do Kinde
-// traduzir a página dashboard
+import Link from "next/link";
 
 export default function Home() {
-  const t = useTranslations();
   return (
-    <div className="bg-slate-50 dark:bg-gray-900">
+    <div className="bg-slate-50 dark:bg-gray-900 ">
       <section>
         <MaxWidthWrapper className="pb-24 pt-10 sm:pb-32 lg:grid lg:grid-cols-3 lg:gap-x-0  lg:pt-24 lg:pb-52 xl:gap-x-8 xl:pt-32">
           <div className="col-span-2 px-6 lg:px-0 lg:pt-4">
@@ -28,20 +22,15 @@ export default function Home() {
                 <AppLogo />
               </div>
               <h1 className="relative w-fit tracking-tighter text-balance mt-16 font-bold !leading-tight text-gray-900 text-5xl md:text-6xl lg:text-7xl">
-                {t.rich("yourImageOnCustom", {
-                  span: (chunks) => (
-                    <span className="bg-green-600 px-2 text-white">
-                      {chunks}
-                    </span>
-                  ),
-                })}
+                Sua imagem em uma Capa de Celular{" "}
+                <span className="bg-green-600 px-2 text-white">
+                  Personalizada
+                </span>
               </h1>
               <p className="mt-8 text-lg lg:pr-10 max-w-prose text-center  lg:text-left text-balance md:text-wrap">
-                {t.rich("catpureMemories", {
-                  span: (chunks) => (
-                    <span className="font-semibold">{chunks}</span>
-                  ),
-                })}
+                Capture suas memórias favoritas com sua capa de celular
+                <span className="font-semibold"> única</span>. CaseCraft permite
+                que você proteja suas memórias, não somente seu celular.
               </p>
               <CheckList />
               <div className="mt-12 flex flex-col sm:flex-row items-center sm:items-start gap-5">
@@ -49,8 +38,8 @@ export default function Home() {
                 <div className="flex flex-col justify-between items-center  sm:items-start">
                   <FiveStars />
                   <p>
-                    <span className="font-semibold">1.250</span>{" "}
-                    {t("happy customers")}
+                    <span className="font-semibold">1.250</span> clientes
+                    satisfeitos
                   </p>
                 </div>
               </div>
@@ -68,14 +57,12 @@ export default function Home() {
         <MaxWidthWrapper>
           <div className="flex flex-col lg:flex-row items-center gap-4 sm:gap-6">
             <h2 className="order-1 mt-2 tracking-tight text-center text-balace !leading-tight font-bold text-5xl md:text-6xl text-gray-900">
-              {t.rich("whatCustomersSay", {
-                underline: (chunks) => (
-                  <span className="relative px-2">
-                    {chunks}
-                    <Icons.underline className="hidden sm:block pointer-events-none absolute inset-x-0 -bottom-6 text-green-500" />
-                  </span>
-                ),
-              })}
+              O que nossos{" "}
+              <span className="relative px-2">
+                clientes{" "}
+                <Icons.underline className="hidden sm:block pointer-events-none absolute inset-x-0 -bottom-6 text-green-500" />
+              </span>{" "}
+              dizem
             </h2>
             <img
               src="/snake-2.png"
@@ -84,19 +71,20 @@ export default function Home() {
             />
           </div>
 
-          <div className="mx-auto grid max-w-2xl grid-cols-1 px-4 lg:mx-0 lg:max-w-none lg:grid-cols-2 gap-y-16">
+          <div className="mx-auto grid max-w-2xl grid-cols-1 px-4 lg:mx-0 lg:max-w-none lg:grid-cols-2 gap-y-16 mt-10">
             {/* TODO First User Review */}
             <div className="flex flex-auto flex-col gap-4 lg:pr-8 xl:pr-20">
               <FiveStars />
               <div className="text-lg leading-8">
                 <p>
-                  {t.rich("firstComment", {
-                    span: (chunks) => (
-                      <span className="p-0.5 bg-slate-800 text-white">
-                        {chunks}
-                      </span>
-                    ),
-                  })}
+                  A capinha parece duradoura e eu até ganhei um elogio no
+                  design. Estou com a capinha faz dois meses e meio e{" "}
+                  <span className="p-0.5 bg-slate-800 text-white">
+                    {" "}
+                    a imagem está super boa
+                  </span>
+                  . Na capinha que eu tinha antes, a imagem começou a desbotar e
+                  ficar amarelada depois de poucas semanas. Amei.
                 </p>
               </div>
               <div className="flex gap-4 mt-2 ">
@@ -109,7 +97,7 @@ export default function Home() {
                   <p className="font-semibold">Jonathan</p>
                   <div className="flex gap-1.5 items-center text-zinc-600">
                     <Check className="size-4 stroke-[3px] text-green-600" />
-                    <p className="text-sm">{t("Verified Purchase")}</p>
+                    <p className="text-sm">Compra Verificada</p>
                   </div>
                 </div>
               </div>
@@ -119,13 +107,13 @@ export default function Home() {
               <FiveStars />
               <div className="text-lg leading-8">
                 <p>
-                  {t.rich("secondComment", {
-                    span: (chunks) => (
-                      <span className="p-0.5 bg-slate-800 text-white">
-                        {chunks}
-                      </span>
-                    ),
-                  })}
+                  Eu geralmente guardo meu celular junto com as chaves no bolso
+                  e isso tinha deixado toda arranhada minha capinha anterior.
+                  Esta capinha, apesar de um risco quase imperceptível na quina{" "}
+                  <span className="p-0.5 bg-slate-800 text-white">
+                    parece novinha mesmo depois de quase meio ano
+                  </span>
+                  . Excelente.
                 </p>
               </div>
               <div className="flex gap-4 mt-2 ">
@@ -138,7 +126,7 @@ export default function Home() {
                   <p className="font-semibold">Josh</p>
                   <div className="flex gap-1.5 items-center text-zinc-600">
                     <Check className="size-4 stroke-[3px] text-green-600" />
-                    <p className="text-sm">{t("Verified Purchase")}</p>
+                    <p className="text-sm">Compra Verificada</p>
                   </div>
                 </div>
               </div>
@@ -156,13 +144,11 @@ export default function Home() {
           <div className="mb-12 px-6 lg:pbx8">
             <div className="mx-auto max-w-2xl sm:tex-center">
               <h2 className="order-1 mt-2 tracking-tight text-center text-balace !leading-tight font-bold text-5xl md:text-6xl text-gray-900">
-                {t.rich("uploadPhoto", {
-                  span: (chunks) => (
-                    <span className="relative px-2 bg-primary text-white">
-                      {chunks}
-                    </span>
-                  ),
-                })}
+                Envie uma foto e obtenha{" "}
+                <span className="relative px-2 bg-primary text-white">
+                  sua própria capinha
+                </span>{" "}
+                agora
               </h2>
             </div>
           </div>
@@ -189,19 +175,19 @@ export default function Home() {
           <ul className="mx-auto mt-12 max-w-prose sm:text-lg space-y-2 w-fit pb-8">
             <li className="w-fit">
               <Check className="size-5 text-green-600 inline mr-1.5" />
-              {t("High-quality silicon material")}
+              Material de Silicone de alta qualidade
             </li>
             <li className="w-fit">
               <Check className="size-5 text-green-600 inline mr-1.5" />
-              {t("Scratch and fingerprint resitant coating")}
+              Revestimento resistente à riscos e marcas de digital
             </li>
             <li className="w-fit">
               <Check className="size-5 text-green-600 inline mr-1.5" />
-              {t("Wireless charging compatiple")}
+              Compatível com carregamento sem fio
             </li>
             <li className="w-fit">
               <Check className="size-5 text-green-600 inline mr-1.5" />
-              {t("Five year print warranty")}
+              Garantia de impressão de 5 anos
             </li>
             <div className="flex justify-center">
               <Link
@@ -211,7 +197,7 @@ export default function Home() {
                   className: "hidden sm:flex items-center gap-1",
                 })}
               >
-                {t("Create Case")}
+                Criar Capa Agora
                 <ArrowRight className="ml-1.5 size-5" />
               </Link>
             </div>

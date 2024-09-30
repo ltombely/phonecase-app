@@ -2,7 +2,7 @@
 
 import { CaseColor } from "@prisma/client";
 import { useEffect, useRef, useState } from "react";
-import { AspectRatio } from "./ui/aspect-ratio";
+import { AspectRatio } from "@/ui/aspect-ratio";
 import { cn } from "@/lib/utils";
 
 type PhonePreviewProps = {

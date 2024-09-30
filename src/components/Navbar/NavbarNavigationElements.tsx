@@ -1,7 +1,7 @@
-import { Link } from "@/i18n/routing";
+import React from "react";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { buttonVariants } from "../ui/button";
-import { useTranslations } from "next-intl";
+import { buttonVariants } from "@/ui/button";
 
 type Props = {
   user: boolean;
@@ -9,17 +9,15 @@ type Props = {
 };
 
 export default function NavbarNavigationElements({ user, isAdmin }: Props) {
-  const t = useTranslations();
-
   {
     return user ? (
       <>
         <Link href="/api/auth/logout" className="hover:opacity-80 font-medium">
-          {t("Sign out")}
+          Sair
         </Link>
         {isAdmin ? (
           <Link href="/dashboard" className="hover:opacity-80 font-medium">
-            {t("Dashboard")}
+            Painel
           </Link>
         ) : null}
         <Link
@@ -29,7 +27,7 @@ export default function NavbarNavigationElements({ user, isAdmin }: Props) {
             className: "hidden sm:flex items-center gap-1",
           })}
         >
-          {t("Create Case")}
+          Criar Capa
           <ArrowRight className="ml-1.5 size-5" />
         </Link>
       </>
@@ -39,10 +37,10 @@ export default function NavbarNavigationElements({ user, isAdmin }: Props) {
           href="  /api/auth/register"
           className="font-medium hover:opacity-80"
         >
-          {t("Sign Up")}
+          Cadastrar
         </Link>
         <Link href="/api/auth/login" className="font-medium hover:opacity-80">
-          {t("Login")}
+          Login
         </Link>
         <div className="w-px h-8 bg-zinc-200" />
         <Link
@@ -52,8 +50,7 @@ export default function NavbarNavigationElements({ user, isAdmin }: Props) {
             className: "hidden sm:flex items-center gap-1",
           })}
         >
-          {t("Create Case")}
-          <ArrowRight className="ml-1.5 size-5" />
+          Criar Capa <ArrowRight className="ml-1.5 size-5" />
         </Link>
       </>
     );

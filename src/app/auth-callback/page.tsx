@@ -36,8 +36,8 @@ export default function Page() {
     <div className="w-full mt-24 flex justify-center">
       <div className="flex flex-col items-center gap-2">
         <Loader2 className="size-8 text-zinc-500 animate-spin" />
-        <h3 className="font-semibold text-xl">Logging you in...</h3>
-        <p>You will be redirected automatically</p>
+        <h3 className="font-semibold text-xl">Entrando...</h3>
+        <p>Você será redirecionado automaticamente</p>
       </div>
     </div>
   );

@@ -5,8 +5,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+} from "@/ui/card";
+import { Progress } from "@/ui/progress";
 import {
   Table,
   TableBody,
@@ -14,120 +14,95 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { db } from "@/db";
+} from "@/ui/table";
 import { formatPrice } from "@/lib/utils";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { notFound } from "next/navigation";
 import StatusDropdown from "./StatusDropdown";
+import { Order, ShippingAddress, User } from "@prisma/client";
+import Link from "next/link";
+import { GearIcon } from "@radix-ui/react-icons";
+import { ArrowRight } from "lucide-react";
 
-export default async function Dashboard() {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+interface ExtendedOrder extends Order {
+  shippingAddress: ShippingAddress | null;
+  user: User;
+}
 
-  const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+type DashboardProps = {
+  orders: ExtendedOrder[];
+  lastWeekSumAmount: number | null;
+  lastMonthSumAmount: number | null;
+};
 
-  if (!user || user.email !== ADMIN_EMAIL) {
-    return notFound();
-  }
+const WEEKLY_GOAL = 1500;
+const MONTHLY_GOAL = 7500;
 
-  const orders = await db.order.findMany({
-    where: {
-      isPaid: true,
-      createdAt: {
-        gte: new Date(new Date().setDate(new Date().getDate() - 7)),
-      },
-    },
-    orderBy: {
-      createdAt: "desc",
-    },
-    include: {
-      user: true,
-      shippingAddress: true,
-    },
-  });
-
-  const lastWeekSum = await db.order.aggregate({
-    where: {
-      isPaid: true,
-      createdAt: {
-        gte: new Date(new Date().setDate(new Date().getDate() - 7)),
-      },
-    },
-    _sum: {
-      amount: true,
-    },
-  });
-
-  const lastMonthSum = await db.order.aggregate({
-    where: {
-      isPaid: true,
-      createdAt: {
-        gte: new Date(new Date().setDate(new Date().getDate() - 30)),
-      },
-    },
-    _sum: {
-      amount: true,
-    },
-  });
-
-  const WEEKLY_GOAL = 500;
-  const MONTHLY_GOAL = 2500;
-
+export default function Dashboard({
+  orders,
+  lastWeekSumAmount,
+  lastMonthSumAmount,
+}: DashboardProps) {
   return (
     <div className="flex min-h-screen w-full bg-muted/40">
       <div className="max-w-7xl w-full mx-auto flex flex-col sm:gap-4 sm:py-4 ">
+        <div className="flex justify-end hover:opacity-80 font-medium">
+          <Link className="flex gap-2" href="/dashboard/admin-config">
+            Configurações do Administrador
+            <ArrowRight className="size-6 text-zinc-700" />
+          </Link>
+        </div>
         <div className="flex flex-col gap-16">
           <div className="grid gap-4 sm:grid-cols-2">
             <Card>
               <CardHeader className="pb-2">
-                <CardDescription>Last week</CardDescription>
+                <CardDescription>Últimos 7 dias</CardDescription>
                 <CardTitle className="text-4xl">
-                  {formatPrice(lastWeekSum._sum.amount ?? 0)}
+                  {formatPrice(lastWeekSumAmount ?? 0)}
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                of {formatPrice(WEEKLY_GOAL)} goal
+                de {formatPrice(WEEKLY_GOAL)}
               </CardContent>
               <CardFooter>
                 <Progress
-                  value={((lastWeekSum._sum.amount ?? 0) * 100) / WEEKLY_GOAL}
+                  value={((lastWeekSumAmount ?? 0) * 100) / WEEKLY_GOAL}
                 />
               </CardFooter>
             </Card>
 
             <Card>
               <CardHeader className="pb-2">
-                <CardDescription>Last Month</CardDescription>
+                <CardDescription>Últimos 30 dias</CardDescription>
                 <CardTitle className="text-4xl">
-                  {formatPrice(lastMonthSum._sum.amount ?? 0)}
+                  {formatPrice(lastMonthSumAmount ?? 0)}
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                of {formatPrice(WEEKLY_GOAL)} goal
+                de {formatPrice(MONTHLY_GOAL)}
               </CardContent>
               <CardFooter>
                 <Progress
-                  value={((lastMonthSum._sum.amount ?? 0) * 100) / MONTHLY_GOAL}
+                  value={((lastMonthSumAmount ?? 0) * 100) / MONTHLY_GOAL}
                 />
               </CardFooter>
             </Card>
           </div>
 
-          <h1 className="text-4xl font-bold tracking-tight">Incoming orders</h1>
+          <h1 className="text-4xl font-bold tracking-tight">
+            Pedidos Recebidos
+          </h1>
 
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Customer</TableHead>
+                <TableHead>Cliente</TableHead>
 
                 <TableHead className="hidden sm:table-cell">Status</TableHead>
 
                 <TableHead className="hidden sm:table-cell">
-                  Purchase Date
+                  Data da Compra
                 </TableHead>
 
-                <TableHead className="text-right">Amount</TableHead>
+                <TableHead className="text-right">Quantia</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

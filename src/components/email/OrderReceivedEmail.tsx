@@ -33,7 +33,7 @@ export default function orderReceivedEmail({
   return (
     <Html>
       <Head />
-      <Preview>Your order summary and estimated delivery date</Preview>
+      <Preview>Resumo do seu pedido e data estimada de entrega</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={message}>
@@ -43,20 +43,21 @@ export default function orderReceivedEmail({
               height="73"
               style={{ margin: "auto" }}
             />
-            <Heading>Thank you for your order!</Heading>
+            <Heading>Obrigado pelo seu pedido!</Heading>
             <Text style={global.text}>
-              We're preparing everything for delivery and will notify you once
-              your package has been shipped. Delivery usually takes 2 days.
+              Estamos preparando tudo para entrega e notificaremos você assim
+              que seu pacote for enviado. A entrega geralmente leva 2 dias.
             </Text>
             <Text style={{ ...global.text, marginTop: 24 }}>
-              We're preparing everything for delivery and will notify you once
-              your package has been shipped. Delivery usually takes 2 days.
+              Caso tenha alguma dúvida sobre seu pedido, sinta-se à vontade para
+              entrar em contato conosco informando o número do seu pedido.
+              Estamos aqui para ajudar.
             </Text>
           </Section>
           <Hr style={global.hr} />
           <Section style={global.defaultPadding}>
             <Text style={addressTitle}>
-              Shipping to: {shippingAddress.name}
+              Enviando para: {shippingAddress.name}
             </Text>
             <Text style={{ ...global.text, fontSize: 14 }}>
               {shippingAddress.street}, {shippingAddress.city},{" "}
@@ -69,12 +70,12 @@ export default function orderReceivedEmail({
           <Section style={global.defaultPadding}>
             <Row style={{ display: "inline-flex", marginBottom: 40 }}>
               <Column style={{ width: 170 }}>
-                <Text style={global.paragraphWithBold}>Order Number</Text>
+                <Text style={global.paragraphWithBold}>Número do pedido</Text>
                 <Text style={track.number}>{orderId}</Text>
               </Column>
 
               <Column>
-                <Text style={global.paragraphWithBold}>Order Date</Text>
+                <Text style={global.paragraphWithBold}>Data do pedido</Text>
                 <Text style={track.number}>{orderDate}</Text>
               </Column>
             </Row>
@@ -85,13 +86,13 @@ export default function orderReceivedEmail({
           <Section style={paddingY}>
             <Row>
               <Text style={{ ...footer, paddingTop: 30, paddingBottom: 30 }}>
-                Please contact us if you have any questions (If you reply to
-                this email, we won't be able to see it.)
+                Entre em contato conosco se tiver alguma dúvida (Se você
+                responder a este e-mail, não poderemos vê-lo.)
               </Text>
             </Row>
             <Row>
               <Text style={footer.text}>
-                &copy; CaseCraft, Inc. All Rights Reserved.
+                &copy; CaseCraft, Inc. Todos os direitos reservados.
               </Text>
             </Row>
           </Section>

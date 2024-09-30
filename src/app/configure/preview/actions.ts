@@ -18,14 +18,14 @@ export const createCheckoutSession = async ({
   });
 
   if (!configuration) {
-    throw new Error("No such configuration found");
+    throw new Error("Configuração não encontrada");
   }
 
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
   if (!user) {
-    throw new Error("You need to be logged in");
+    throw new Error("Você precisa estar logado");
   }
 
   const { finish, material } = configuration;
@@ -59,10 +59,10 @@ export const createCheckoutSession = async ({
   }
 
   const product = await stripe.products.create({
-    name: "Custom iPhone Case",
+    name: "Capa de iPhone personalizada",
     images: [configuration.imageUrl],
     default_price_data: {
-      currency: "USD",
+      currency: "BRL",
       unit_amount: price,
     },
   });
@@ -72,7 +72,7 @@ export const createCheckoutSession = async ({
     cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/configure/preview?id=${configuration.id}`,
     payment_method_types: ["card"],
     mode: "payment",
-    shipping_address_collection: { allowed_countries: ["DE", "US", "BR"] },
+    shipping_address_collection: { allowed_countries: ["BR"] },
     metadata: {
       userId: user.id,
       orderId: order.id,

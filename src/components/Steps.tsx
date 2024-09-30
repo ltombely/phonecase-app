@@ -2,29 +2,27 @@
 
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
 
 const STEPS = [
   {
-    name: "Step 1: Add image",
-    description: "Choose an image to your case",
+    name: "Passo 1: Adicionar Image",
+    description: "Escolha uma imagem para sua capa",
     url: "/upload",
   },
   {
-    name: "Step 2: Customize design",
-    description: "Make the case yours",
+    name: "Passo 2: Personalize sua Design",
+    description: "Faça a capa Única!",
     url: "/design",
   },
   {
-    name: "Step 3: Summary",
-    description: "Review your final design",
+    name: "Passo 3: Revisão",
+    description: "Revise o Design final",
     url: "/preview",
   },
 ];
 
 export default function Steps() {
   const pathName = usePathname();
-  const t = useTranslations();
 
   return (
     <ol className="rounded-md bg-white lg:flex lg:rounded-none lg:border-1 lg:border-r lg:border-gray-200">
@@ -70,10 +68,10 @@ export default function Steps() {
                       "text-zinc-700": isCurrent,
                     })}
                   >
-                    {t(step.name)}
+                    {step.name}
                   </span>
                   <span className="text-sm text-zinc-500">
-                    {t(step.description)}
+                    {step.description}
                   </span>
                 </span>
               </span>

@@ -5,9 +5,9 @@
 import { PRODUCT_PRICES } from "../config/products";
 
 export const COLORS = [
-  { label: "Black", value: "black", tw: "zinc-950" },
-  { label: "Blue", value: "blue", tw: "blue-950" },
-  { label: "Rose", value: "rose", tw: "rose-950" },
+  { label: "Preto", value: "black", tw: "zinc-950" },
+  { label: "Azul", value: "blue", tw: "blue-950" },
+  { label: "Rosa", value: "rose", tw: "rose-950" },
 ] as const;
 
 export const MODELS = {
@@ -32,27 +32,27 @@ export const MATERIALS = {
       price: PRODUCT_PRICES.material.silicone,
     },
     {
-      label: "Soft Polycarbonate",
+      label: "Policarbonato macio",
       value: "polycarbonate",
-      description: "Scratch-resistant coating",
+      description: "Revestimento resistente à riscos",
       price: PRODUCT_PRICES.material.polycarbonate,
     },
   ],
 } as const;
 
 export const FINISHES = {
-  name: "finish",
+  name: "acabamento",
   options: [
     {
-      label: "Smooth Finish",
+      label: "Acabamento Suave",
       value: "smooth",
       description: undefined,
       price: PRODUCT_PRICES.finish.smooth,
     },
     {
-      label: "Textured Finish",
+      label: "Acabamento Texturizado",
       value: "textured",
-      description: "Soft grippy texture",
+      description: "Textura macia e aderente",
       price: PRODUCT_PRICES.finish.textured,
     },
   ],

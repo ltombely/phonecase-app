@@ -5,11 +5,10 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "./ui/dialog";
+} from "@/ui/dialog";
 import Image from "next/image";
 import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
-import { buttonVariants } from "./ui/button";
-import { useTranslations } from "next-intl";
+import { buttonVariants } from "@/ui/button";
 
 type LoginModalProps = {
   isOpen: boolean;
@@ -17,7 +16,6 @@ type LoginModalProps = {
 };
 
 export default function LoginModal({ isOpen, setIsOpen }: LoginModalProps) {
-  const t = useTranslations();
   return (
     <Dialog onOpenChange={setIsOpen} open={isOpen}>
       <DialogContent className="absolute z-[999999]">
@@ -31,24 +29,21 @@ export default function LoginModal({ isOpen, setIsOpen }: LoginModalProps) {
             />
           </div>
           <DialogTitle className="text-3xl text-center font-bold tracking-tight text-gray-900">
-            {t("Log in to continue")}
+            Faça login para continuar
           </DialogTitle>
           <DialogDescription className="text-base text-center py-2">
-            {t.rich("configSaved", {
-              span: (chunks) => (
-                <span className="font-medium text-zinc-900">{chunks}</span>
-              ),
-            })}
+            <span className="font-medium text-zinc-900">
+              Sua configuração foi salva!
+            </span>
+            Por favor, faça Steps ou crie uma conta para completar sua compra.
           </DialogDescription>
         </DialogHeader>
 
         <div className="grid grid-cols-2 gap-6 divide-x divide-gray-200">
           <LoginLink className={buttonVariants({ variant: "outline" })}>
-            {t("Login")}
+            Login
           </LoginLink>
-          <RegisterLink className={buttonVariants()}>
-            {t("Sign up")}
-          </RegisterLink>
+          <RegisterLink className={buttonVariants()}>Cadastrar</RegisterLink>
         </div>
       </DialogContent>
     </Dialog>

@@ -1,17 +1,15 @@
 import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
-import { useTranslations } from "next-intl";
 
 export default function Footer() {
-  const t = useTranslations();
   return (
     <footer className="bg-white h-20 relative">
       <MaxWidthWrapper>
-        <div className="border-t border-gray-200" />
+        <div className="border-t border-gray-200 pt-2" />
         <div className="h-full flex flex-col md:flex-row md:justify-between justify-center items:center">
           <div className="text-center md:text-left pb-2 md:pb-0">
             <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} {t("All rights reserved")}
+              &copy; {new Date().getFullYear()} Todos os direitos reservados
             </p>
           </div>
           <div className="flex justify-center">
@@ -20,20 +18,31 @@ export default function Footer() {
                 href="#"
                 className="text-sm text-muted-foreground hover:text-gray-600"
               >
-                {t("Terms of Service")}
+                Termos de Serviço
               </Link>
               <Link
                 href="#"
                 className="text-sm text-muted-foreground hover:text-gray-600"
               >
-                {t("Privacy Policy")}
+                Política de Privacidade
               </Link>
               <Link
                 href="#"
                 className="text-sm text-muted-foreground hover:text-gray-600"
               >
-                {t("Cookie Policy")}
+                Política de Cookies
               </Link>
+              <div>
+                <span className="text-sm text-muted-foreground">
+                  Inspirado em{" "}
+                </span>
+                <Link
+                  href="https://www.youtube.com/@joshtriedcoding"
+                  className="text-sm text-muted-foreground hover:text-gray-600"
+                >
+                  @joshtriedcoding
+                </Link>
+              </div>
             </div>
           </div>
         </div>

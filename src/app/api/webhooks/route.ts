@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     const body = await req.text();
     const signature = await headers().get("stripe-signature");
 
-    if (!signature) throw new Response("Invalid signature", { status: 400 });
+    if (!signature) throw new Response("Assinatura inválida", { status: 400 });
 
     const event = stripe.webhooks.constructEvent(
       body,
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
 
     if (event.type === "checkout.session.completed") {
       if (!event.data.object.customer_details?.email) {
-        throw new Error("Missing user email");
+        throw new Error("Email do usuário não informado");
       }
 
       const session = event.data.object as Stripe.Checkout.Session;
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
       };
 
       if (!userId || !orderId) {
-        throw new Error("Invalid request metadata ");
+        throw new Error("Requisição de Metadados Inválida");
       }
 
       const billingAddress = session.customer_details!.address;
@@ -74,7 +74,7 @@ export async function POST(req: Request) {
       await resend.emails.send({
         from: "CaseCraft <lucastombely@gmail.com>",
         to: [event.data.object.customer_details.email],
-        subject: "Thank your for your order!",
+        subject: "Obrigado pelo seu pedido!",
         react: OrderReceivedEmail({
           orderId,
           orderData: updatedOrder.createdAt.toLocaleDateString(),
@@ -96,7 +96,7 @@ export async function POST(req: Request) {
     console.error(err);
 
     return NextResponse.json(
-      { message: "Something went wrong", ok: false },
+      { message: "Algo de errado aconteceu", ok: false },
       { status: 500 }
     );
   }

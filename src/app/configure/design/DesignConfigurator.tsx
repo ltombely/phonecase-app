@@ -22,10 +22,10 @@ import {
   Label as RadioGroupLabel,
 } from "@headlessui/react";
 
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Label } from "@/ui/label";
+import { Button } from "@/ui/button";
+import { ScrollArea } from "@/ui/scroll-area";
+import { AspectRatio } from "@/ui/aspect-ratio";
 import ResizeHandleComponent from "@/components/ResizeHandleComponent";
 import {
   DropdownMenu,
@@ -35,8 +35,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useMutation } from "@tanstack/react-query";
 import { SaveConfigArgs, saveConfig as _saveConfig } from "./actions";
-import { useRouter } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 type DesignConfiguratorProps = {
   imageUrl: string;
@@ -68,7 +67,6 @@ export default function DesignConfigurator({
   const { toast } = useToast();
 
   const router = useRouter();
-  const t = useTranslations();
 
   const { mutate: saveConfig, isPending } = useMutation({
     mutationKey: ["save-config"],
@@ -77,8 +75,9 @@ export default function DesignConfigurator({
     },
     onError: () => {
       toast({
-        title: "Something went wrong",
-        description: "There was an error on our end. Please try again.",
+        title: "Algo aconteceu fora do esperado :(",
+        description:
+          "Houve um erro no nosso servidor. Por favor, tente novamente.",
         variant: "destructive",
       });
     },
@@ -240,7 +239,7 @@ export default function DesignConfigurator({
           />
           <div className="px-8 pb-12 pt-8">
             <h2 className="tracking-tight font-bold text-3xl">
-              {t("Customize your case")}
+              Personalize sua Capinha
             </h2>
             <div className="w-full h-px bg-zinc-200 my-6" />
 
@@ -255,7 +254,7 @@ export default function DesignConfigurator({
                     }));
                   }}
                 >
-                  <Label>{t("Color")}: {t(options.color.label)}</Label>
+                  <Label>Cor: {options.color.label}</Label>
                   <div className="mt-3 flex items-center space-x-3">
                     {COLORS.map((color) => (
                       <Radio
@@ -281,7 +280,7 @@ export default function DesignConfigurator({
                   </div>
                 </RadioGroup>
                 <div className="relative flex flex-col gap-3">
-                  <Label>{t("Model")}</Label>
+                  <Label>Modelo</Label>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button
@@ -329,6 +328,7 @@ export default function DesignConfigurator({
                   ({ name, options: selectableOptions }) => (
                     <RadioGroup
                       key={name}
+                      // @ts-ignore
                       value={options[name]}
                       onChange={(val) => {
                         setOptions((prev) => ({
@@ -338,7 +338,7 @@ export default function DesignConfigurator({
                       }}
                     >
                       <Label>
-                        {t(name.slice(0, 1).toUpperCase() + name.slice(1))}
+                        {name.slice(0, 1).toUpperCase() + name.slice(1)}
                       </Label>
                       <div className="mt-3 space-y-4">
                         {selectableOptions.map((option) => (
@@ -360,12 +360,12 @@ export default function DesignConfigurator({
                                   as="span"
                                   className="font-medium text-gray-900"
                                 >
-                                  {t(option.label)}
+                                  {option.label}
                                 </RadioGroupLabel>
                                 {option.description ? (
                                   <Description className="text-gray-500">
                                     <span className="block sm:inline">
-                                      {t(option.description)}
+                                      {option.description}
                                     </span>
                                   </Description>
                                 ) : null}
@@ -414,9 +414,9 @@ export default function DesignConfigurator({
                 }}
                 isLoading={isPending}
                 disabled={isPending}
-                loadingText={t("Saving")}
+                loadingText="Salvando"
               >
-                {t("Continue")}
+                Continuar
                 <ArrowRight className="size-4 ml-1.5 inline" />
               </Button>
             </div>
